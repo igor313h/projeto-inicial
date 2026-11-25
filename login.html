@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/form.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="icon" href="img/icone-grao.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Limone d'Oro - Login</title>
+</head>
+<body>
+<main>  <nav class="navbar">
+    <ul>
+      <li><a href="index.php">Cardápio</a></li>
+    </ul>
+  </nav>  <section class="container-admin-banner">
+    <img src="img/banner-site.png" class="logo-admin" alt="logo-grao">
+    <h1>Login Limone d’Oro </h1>
+    
+  </section>
+  <section class="container-form">
+  <form action="login.php" method="post">
+    <p id="login-mensagem" role="alert" style="color: #ff8a8a;" hidden></p>
+
+    <label for="email">E-mail</label>
+    <input type="email" id="email" name="email" autocomplete="username" placeholder="Digite o seu e-mail" required>
+
+    <label for="password">Senha</label>
+    <input type="password" id="password" name="password" autocomplete="current-password" placeholder="Digite a sua senha" required>
+
+    <p class="login-ajuda">Acesso local: <strong>admin@limonedoro.com</strong> / <strong>admin123</strong></p>
+    <input type="submit" class="botao-cadastrar" value="Entrar"/>
+  </form>
+
+  </section>
+</main>
+<script>
+  const parametros = new URLSearchParams(window.location.search);
+  const mensagem = document.getElementById('login-mensagem');
+
+  if (parametros.get('erro') === 'credenciais') {
+    mensagem.textContent = 'E-mail ou senha incorretos.';
+    mensagem.hidden = false;
+  } else if (parametros.get('erro') === 'config') {
+    mensagem.textContent = 'Login não configurado. Inicie o servidor pelo arquivo iniciar-servidor.ps1.';
+    mensagem.hidden = false;
+  } else if (parametros.get('logout') === '1') {
+    mensagem.textContent = 'Você saiu da sua conta.';
+    mensagem.style.color = '#EBC181';
+    mensagem.hidden = false;
+  }
+</script>
+</body>
+</html>
